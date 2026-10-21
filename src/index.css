@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 외부 웹폰트 없이 시스템 글꼴만 사용해 빠르게 로드합니다. */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif;
+  background-color: #fff9f6;
+  color: #35232c;
+  word-break: keep-all;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+:focus-visible {
+  outline: 2px solid #d94d83;
+  outline-offset: 3px;
+}
+
+footer :focus-visible {
+  outline-color: #f8dce6;
+}
+
+[tabindex='-1']:focus {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
