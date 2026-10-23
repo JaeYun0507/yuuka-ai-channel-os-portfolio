@@ -1,0 +1,21 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe",
+            "args": [
+              "-NoProfile",
+              "-File",
+              "${CLAUDE_PROJECT_DIR}/scripts/auto-upload/auto-upload.ps1",
+              "hook"
+            ],
+            "timeout": 840
+          }
+        ]
+      }
+    ]
+  }
+}
