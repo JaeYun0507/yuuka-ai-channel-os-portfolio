@@ -1,8 +1,9 @@
 # 보안 현황 (npm audit)
 
 - 확인일: 2026-10-23
-- 확인 방법: `npm audit --json` 직접 실행 (작업 트리 기준, `package-lock.json`에는 아직 commit되지 않은 `npm audit fix` 변경이 있음)
-- 사용자가 전달한 마지막 관측값(7개: moderate 2, high 5)과 동일하며 악화는 없음
+- 확인 방법: `npm audit --json`을 직접 실행했어요. `npm audit fix` 결과가 반영된 `package-lock.json`(commit `8757f96`) 기준이에요.
+- 사용자가 전달한 마지막 관측값(7개: moderate 2, high 5)과 같고, 악화는 없어요.
+- 기계가 읽는 기준선은 [`scripts/auto-upload/security-baseline.json`](../scripts/auto-upload/security-baseline.json)에 있어요. 자동 업로드가 이 기준선과 현재 audit을 비교해요.
 
 ## 요약
 
@@ -27,15 +28,15 @@
 | postcss-nested | moderate | postcss-selector-parser 경유 |
 | postcss-selector-parser | moderate | GHSA 1241232: 평면 selector 파싱의 quadratic complexity로 인한 CPU 소진 |
 
-## 자동 수정 가능 여부
+## 해결 방법에 대해
 
-`npm audit`이 제시하는 해결책은 `tailwindcss@4.3.3`(semver-major)로의 업그레이드뿐이에요. Tailwind 3 → 4는 설정 방식(`tailwind.config.js`, PostCSS 플러그인)이 바뀌는 마이그레이션이라 자동 적용하지 않았어요.
+`npm audit`이 제시하는 자동 해결책은 `tailwindcss@4.3.3`(semver-major) 업그레이드 하나예요. 이것이 유일한 해결책이라고 확인한 것은 아니에요. 하위 패키지만 올리는 `overrides` 같은 다른 경로는 호환성을 평가하지 않았고, 평가 없이 적용하지도 않았어요.
 
 ## 상태와 방침
 
-- **미해결**입니다. 무해하다고 판단하지 않았어요.
-- 해당 취약점은 DoS 계열이라, 빌드 시점 도구 체인(Tailwind 컨텐츠 스캔)에서 신뢰할 수 없는 입력을 처리할 때 문제가 될 수 있어요. 이 프로젝트의 실제 노출 정도는 별도로 평가하지 않았어요.
+- **미해결**이에요. 무해하다고 판단하지 않았어요.
+- 취약점은 DoS 계열이고 빌드 도구 체인에 있어요. 이 프로젝트에서 실제로 얼마나 노출되는지는 평가하지 않았어요.
 - `npm audit fix --force`는 실행하지 않아요.
-- 호환성이 확인되지 않은 `overrides`는 적용하지 않아요.
-- 해결하려면 Tailwind 4 마이그레이션을 별도 작업으로 계획하고 승인받은 뒤 진행해요.
-- 새 취약점이 생기거나 위 표보다 악화되면 보고하고 승인을 기다려요.
+- 호환성이 확인되지 않은 `overrides`와 Tailwind 주요 버전 변경은 임의로 적용하지 않아요.
+- 새 취약점, 새 advisory, 새 의존성 경로, 심각도 악화가 확인되면 자동 업로드가 차단돼요. 이때 보고하고 승인을 기다려요.
+- 기존 7개가 줄어드는 변화는 차단하지 않아요. 기준선은 사람이 검토한 뒤에만 갱신해요.
