@@ -22,3 +22,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment variables (secrets) - never commit
+.env
+.env.*
+!.env.example
+
+# Keys and credentials
+*.pem
+*.key
