@@ -2,6 +2,7 @@
 
 - 원격: https://github.com/JaeYun0507/yuuka-ai-channel-os-portfolio (**공개 저장소** — 비밀정보 유출 방지가 최우선)
 - 로컬: `C:\Users\bjy03\Projects\yuuka-ai-channel-os-portfolio`
+- 자동 업로드 전용 worktree: 메인 폴더 옆 `yuuka-ai-channel-os-portfolio-auto` (브랜치 `auto/claude`)
 - 이 문서는 작업 지침이며 GitHub 인증이나 실행 권한을 부여하지 않습니다.
 
 ## 시작 전 확인
@@ -11,6 +12,8 @@
 - 충돌이나 출처가 불명확한 변경이 있으면 질문합니다.
 
 ## 코드 수정 작업 종료 절차
+(메인 worktree에서의 수동 절차입니다. 전용 worktree는 아래 "자동 업로드"를 따릅니다.)
+
 변경 검토 → 비밀정보 검사 → `npm run lint` → `npm run build`
 → 이번 작업 관련 파일만 명시적으로 stage → staged diff 재검토
 → commit → push → 원격 반영 확인(로컬 SHA와 `origin/<branch>` SHA 비교)
@@ -34,7 +37,16 @@ lint/build 실패, 비밀정보 발견, Git 충돌, 인증 실패, push 거절, 
 
 - `git push --force`, `git reset --hard`, `git clean`, `--no-verify` 같은 검증 우회 옵션을 쓰지 않습니다.
 - 원격 변경 때문에 push가 거절되면 임의로 merge하거나 rebase하지 않습니다.
-- 종료 훅이나 파일 감시로 자동 push하는 설정을 설치하지 않습니다.
+- 종료 Hook이나 파일 감시로 자동 push하는 설정은 아래 "자동 업로드"에 정의된 Stop Hook 하나만 허용합니다. 그 밖의 자동 push 설정(다른 Hook, 파일 감시, 예약 작업)은 설치하지 않습니다.
+
+## 자동 업로드 (전용 worktree 한정)
+- 전용 worktree에서 실행한 Claude Code에서만 적용됩니다. Stop Hook(`.claude/settings.json`)이 `scripts/auto-upload/auto-upload.ps1`을 실행해 검사하고, 통과하면 `auto/claude`에 commit·push합니다. 상세는 [docs/auto-upload.md](docs/auto-upload.md)입니다.
+- 이 브랜치에서는 Hook이 업로드를 담당하므로 직접 `git commit`·`git push`를 하지 않습니다. 수동 업로드는 사용자가 요청할 때 `auto-upload.ps1 run`으로만 합니다.
+- 허용 범위는 `auto/claude`로의 일반 push뿐입니다. `main` 직접 push, 자동 merge, PR 생성·merge, force push는 하지 않습니다. `main` 반영과 사이트 배포는 별도 작업입니다.
+- `.claude/`, `scripts/auto-upload/`, `CLAUDE.md`, `.gitignore`는 보호 파일입니다. 사용자가 요청하지 않으면 수정하지 않고, 수정했다면 검토를 요청합니다.
+- `auto-upload.ps1`의 `approve`, `baseline`, `enable`, `disable`은 사용자만 실행합니다. 대신 실행하거나 검사를 우회하지 않습니다.
+- Hook이 실패하면 원인을 보고합니다. `-ExecutionPolicy` 변경, 검사 비활성화, 설정 수정으로 우회하지 않습니다.
+- 응답 종료는 기능 완성을 뜻하지 않습니다. 중간 상태도 검사를 통과하면 올라갈 수 있습니다.
 
 ## 인증과 권한
 - 기존 Git/GitHub CLI 인증 상태를 확인합니다. 로그인이 필요하면 절차만 안내하고, 토큰이나 암호를 채팅에 입력하라고 요구하지 않습니다.
