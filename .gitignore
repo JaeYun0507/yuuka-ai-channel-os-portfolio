@@ -31,3 +31,6 @@ dist-ssr
 # Keys and credentials
 *.pem
 *.key
+
+# Claude Code local state (never commit)
+.claude/settings.local.json
