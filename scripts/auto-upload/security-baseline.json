@@ -1,0 +1,125 @@
+{
+    "recordedAt":  "2026-10-23",
+    "note":  "Known, UNRESOLVED npm audit findings. Uploads are blocked on new packages, new advisories, new paths or higher severity. Not a statement that these are harmless.",
+    "vulnerabilities":  {
+                            "braces":  {
+                                           "severity":  "high",
+                                           "isDirect":  false,
+                                           "advisories":  [
+                                                              "1240992"
+                                                          ],
+                                           "viaPackages":  [
+
+                                                           ],
+                                           "effects":  [
+                                                           "chokidar",
+                                                           "micromatch"
+                                                       ],
+                                           "nodes":  [
+                                                         "node_modules/braces"
+                                                     ]
+                                       },
+                            "chokidar":  {
+                                             "severity":  "high",
+                                             "isDirect":  false,
+                                             "advisories":  [
+
+                                                            ],
+                                             "viaPackages":  [
+                                                                 "braces"
+                                                             ],
+                                             "effects":  [
+                                                             "tailwindcss"
+                                                         ],
+                                             "nodes":  [
+                                                           "node_modules/chokidar"
+                                                       ]
+                                         },
+                            "fast-glob":  {
+                                              "severity":  "high",
+                                              "isDirect":  false,
+                                              "advisories":  [
+
+                                                             ],
+                                              "viaPackages":  [
+                                                                  "micromatch"
+                                                              ],
+                                              "effects":  [
+                                                              "tailwindcss"
+                                                          ],
+                                              "nodes":  [
+                                                            "node_modules/fast-glob"
+                                                        ]
+                                          },
+                            "micromatch":  {
+                                               "severity":  "high",
+                                               "isDirect":  false,
+                                               "advisories":  [
+
+                                                              ],
+                                               "viaPackages":  [
+                                                                   "braces"
+                                                               ],
+                                               "effects":  [
+                                                               "fast-glob",
+                                                               "tailwindcss"
+                                                           ],
+                                               "nodes":  [
+                                                             "node_modules/micromatch"
+                                                         ]
+                                           },
+                            "postcss-nested":  {
+                                                   "severity":  "moderate",
+                                                   "isDirect":  false,
+                                                   "advisories":  [
+
+                                                                  ],
+                                                   "viaPackages":  [
+                                                                       "postcss-selector-parser"
+                                                                   ],
+                                                   "effects":  [
+                                                                   "tailwindcss"
+                                                               ],
+                                                   "nodes":  [
+                                                                 "node_modules/postcss-nested"
+                                                             ]
+                                               },
+                            "postcss-selector-parser":  {
+                                                            "severity":  "moderate",
+                                                            "isDirect":  false,
+                                                            "advisories":  [
+                                                                               "1241232"
+                                                                           ],
+                                                            "viaPackages":  [
+
+                                                                            ],
+                                                            "effects":  [
+                                                                            "postcss-nested",
+                                                                            "tailwindcss"
+                                                                        ],
+                                                            "nodes":  [
+                                                                          "node_modules/postcss-selector-parser"
+                                                                      ]
+                                                        },
+                            "tailwindcss":  {
+                                                "severity":  "high",
+                                                "isDirect":  true,
+                                                "advisories":  [
+
+                                                               ],
+                                                "viaPackages":  [
+                                                                    "chokidar",
+                                                                    "fast-glob",
+                                                                    "micromatch",
+                                                                    "postcss-nested",
+                                                                    "postcss-selector-parser"
+                                                                ],
+                                                "effects":  [
+
+                                                            ],
+                                                "nodes":  [
+                                                              "node_modules/tailwindcss"
+                                                          ]
+                                            }
+                        }
+}
