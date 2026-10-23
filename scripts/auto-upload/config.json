@@ -1,0 +1,47 @@
+{
+  "dedicatedFolderName": "yuuka-ai-channel-os-portfolio-auto",
+  "mainFolderName": "yuuka-ai-channel-os-portfolio",
+  "expectedOrigin": "https://github.com/JaeYun0507/yuuka-ai-channel-os-portfolio",
+  "remote": "origin",
+  "branch": "auto/claude",
+  "baseBranch": "main",
+  "lintCommand": ["run", "lint"],
+  "buildCommand": ["run", "build"],
+  "audit": { "mode": "npm" },
+  "limits": {
+    "totalSec": 780,
+    "gitSec": 60,
+    "pushSec": 120,
+    "lintSec": 180,
+    "buildSec": 300,
+    "auditSec": 120,
+    "lockStaleSec": 1800,
+    "maxScanBytes": 2097152
+  },
+  "protectedPatterns": [
+    "^\\.claude/",
+    "^scripts/auto-upload/",
+    "^CLAUDE\\.md$",
+    "^\\.gitignore$",
+    "^\\.gitattributes$"
+  ],
+  "allowedNamePatterns": [
+    "(^|/)\\.env\\.example$"
+  ],
+  "forbiddenNamePatterns": [
+    "(^|/)\\.env($|\\.)",
+    "(^|/)node_modules/",
+    "(^|/)dist/",
+    "\\.log$",
+    "\\.(lock|pid)$",
+    "\\.(pem|key|p12|pfx|jks|keystore|ppk)$",
+    "(^|/)id_(rsa|dsa|ecdsa|ed25519)",
+    "(^|/)\\.(npmrc|netrc|git-credentials)$",
+    "(^|/)[^/]*credential[^/]*$",
+    "(^|/)secrets?\\.(json|ya?ml|txt|env)$",
+    "service[-_]?account.*\\.json$",
+    "(^|/)\\.aws/",
+    "(^|/)\\.claude/settings\\.local\\.json$"
+  ],
+  "allowedBinaryExtensions": ["png", "jpg", "jpeg", "gif", "webp", "ico", "woff", "woff2"]
+}
